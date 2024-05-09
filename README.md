@@ -369,4 +369,5 @@ These are some of the most commonly used Excel functions, each with its code sam
 =INDEX($D$8:$D$52888,SEQUENCE(27,1,(ROW()-ROW($G$8))*138+1,1))
 ```
 
+=INDEX($D$8:$D$52888,SEQUENCE(27,1,(ROW()-$G$1)*138+COLUMN()-COLUMN($G$8)+1,1))
 この関数は、G8から始まるセル範囲をD列からのデータで参照します。H8から始まるセル範囲を参照する場合は、`COLUMN()-COLUMN($H$8)`を使ってセットごとのオフセットを計算します。

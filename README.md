@@ -427,5 +427,25 @@ for unit in range(384):
 # 結果をCSVファイルとして保存
 df.to_csv('output_file.csv', index=False)
 
+
+
+import pandas as pd
+
+# CSVファイルの読み込み
+df = pd.read_csv('your_file.csv')
+
+# データを整形
+formatted_df = df.pivot(index='Vth', columns='Unit', values='cell_count')
+
+# 列名を変更
+formatted_df.columns = [f'Unit{i}' for i in formatted_df.columns]
+
+# 必要な列のみを抽出
+formatted_df = formatted_df.loc[2:4]
+
+# 結果をCSVファイルとして保存
+formatted_df.to_csv('output_file.csv')
+
+
 =INDEX($D$8:$D$52888,SEQUENCE(27,1,(ROW()-$G$1)*138+COLUMN()-COLUMN($G$8)+1,1))
 この関数は、G8から始まるセル範囲をD列からのデータで参照します。H8から始まるセル範囲を参照する場合は、`COLUMN()-COLUMN($H$8)`を使ってセットごとのオフセットを計算します。

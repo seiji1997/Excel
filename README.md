@@ -354,3 +354,19 @@ Returns the current date.
 ```
 
 These are some of the most commonly used Excel functions, each with its code sample. You can use these functions to perform a wide range of calculations and data manipulations in Excel.
+
+
+
+以下の手順で、縦と横にドラッグした際に適切に変数が反映されるような関数を作成できます。
+
+1. 最初に、列のインデックスを計算します。例えば、G列から始まるセルの場合、D列からのオフセットは `(COLUMN()-COLUMN($G$8))*138` となります。138は1つのセットごとにD列からのオフセットがどれだけずれるかを示します。
+
+2. `INDEX`関数と`SEQUENCE`関数を使用して、指定されたセル範囲を参照します。
+
+以下は、G8からのセルを参照する関数の例です。この関数をG8セルに入力し、縦や横にドラッグすると、指定されたセル範囲が適切に参照されます。
+
+```excel
+=INDEX($D$8:$D$52888,SEQUENCE(27,1,(ROW()-ROW($G$8))*138+1,1))
+```
+
+この関数は、G8から始まるセル範囲をD列からのデータで参照します。H8から始まるセル範囲を参照する場合は、`COLUMN()-COLUMN($H$8)`を使ってセットごとのオフセットを計算します。

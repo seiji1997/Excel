@@ -382,7 +382,35 @@ df.to_csv('output_file.csv', index=False)
 ```
 
 
+Visual Studio Code（以下、VS Code）でPythonの実行環境を構築する手順は次のとおりです。
 
+1. **Pythonのインストール**: まず、Pythonをインストールします。[Pythonの公式サイト](https://www.python.org/downloads/)から最新バージョンのPythonインストーラをダウンロードし、インストールします。インストール中に「Add Python to PATH」オプションを選択してください。
+
+2. **VS Codeのインストール**: 次に、[VS Codeの公式サイト](https://code.visualstudio.com/)からVS Codeのインストーラをダウンロードし、インストールします。
+
+3. **Python拡張機能のインストール**: VS Codeを開き、左側のアクティビティバーから「Extensions」をクリックします。検索バーに「Python」と入力し、表示される「Python」拡張機能をインストールします。
+
+4. **Pythonインタープリターの設定**: VS CodeでPythonファイルを開きます。右下の「Select Python Interpreter」をクリックし、インストールしたPythonのバージョンを選択します。
+
+5. **仮想環境の作成（オプション）**: Pythonプロジェクトごとに仮想環境を作成することをお勧めします。仮想環境を作成するには、ターミナルを開き、プロジェクトのディレクトリで以下のコマンドを実行します。
+
+   ```
+   python -m venv venv
+   ```
+
+   これにより、`venv`という名前の仮想環境が作成されます。
+
+6. **仮想環境の有効化**: 仮想環境を有効化するには、ターミナルで以下のコマンドを実行します。
+
+   - Windowsの場合：
+
+     ```
+     .\venv\Scripts\activate
+     ```
+
+7. **VS Codeで仮想環境を使用する**: 仮想環境が有効化された状態でVS Codeを開くと、VS Codeはその仮想環境を使用します。これにより、プロジェクトごとに異なるPython環境を管理できます。
+
+以上の手順に従うことで、VS CodeでPythonの実行環境を構築し、Pythonプロジェクトを管理できます。
 
 =INDEX($D$8:$D$52888,SEQUENCE(27,1,(ROW()-$G$1)*138+COLUMN()-COLUMN($G$8)+1,1))
 この関数は、G8から始まるセル範囲をD列からのデータで参照します。H8から始まるセル範囲を参照する場合は、`COLUMN()-COLUMN($H$8)`を使ってセットごとのオフセットを計算します。

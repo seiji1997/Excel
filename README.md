@@ -412,5 +412,20 @@ Visual Studio Code（以下、VS Code）でPythonの実行環境を構築する�
 
 以上の手順に従うことで、VS CodeでPythonの実行環境を構築し、Pythonプロジェクトを管理できます。
 
+import pandas as pd
+
+# CSVファイルの読み込み
+df = pd.read_csv('your_file.csv')
+
+# Unitごとに新しい列を作成し、Vthが4から30の範囲にある行のcell_countの合計を計算
+for unit in range(384):
+    new_col_name = f'Unit_{unit}_cell_count_sum'
+    vth_filter = (df['Unit'] == unit) & (df['Vth'] >= 4) & (df['Vth'] <= 30)
+    sum_cell_count = df.loc[vth_filter, 'cell_count'].sum()
+    df.loc[df['Unit'] == unit, new_col_name] = sum_cell_count
+
+# 結果をCSVファイルとして保存
+df.to_csv('output_file.csv', index=False)
+
 =INDEX($D$8:$D$52888,SEQUENCE(27,1,(ROW()-$G$1)*138+COLUMN()-COLUMN($G$8)+1,1))
 この関数は、G8から始まるセル範囲をD列からのデータで参照します。H8から始まるセル範囲を参照する場合は、`COLUMN()-COLUMN($H$8)`を使ってセットごとのオフセットを計算します。

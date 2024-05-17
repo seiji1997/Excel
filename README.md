@@ -400,4 +400,51 @@ for unit in df['unit'].unique():
     plt.grid(True)
     plt.show()
 
+
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# CSVデータの読み込み
+df = pd.read_csv('your_data.csv')
+
+# count_dr列の名前
+count_dr_columns = ['count_dr0', 'count_dr64', 'count_dr235']
+
+# 新しいcell_count列の名前
+cell_count_columns = ['cell_count0', 'cell_count64', 'cell_count235']
+
+# 前処理: 差分を計算して新しい列を作成
+for count_col, cell_col in zip(count_dr_columns, cell_count_columns):
+    df[cell_col] = df.groupby('unit')[count_col].diff().fillna(0)
+
+# データの確認
+print(df.head())
+
+# unitごとのグラフを作成
+for unit in df['unit'].unique():
+    df_unit = df[df['unit'] == unit]
+    
+    # cell_countの比較グラフ
+    plt.figure(figsize=(10, 6))
+    for cell_col, label in zip(cell_count_columns, ['Cell Count DR0', 'Cell Count DR64', 'Cell Count DR235']):
+        plt.plot(df_unit['vth'], df_unit[cell_col], label=label)
+    plt.xlabel('Vth')
+    plt.ylabel('Cell Count')
+    plt.title(f'Unit {unit} - Cell Count Comparison')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    # count_drの比較グラフ
+    plt.figure(figsize=(10, 6))
+    for count_col, label in zip(count_dr_columns, ['Count DR0', 'Count DR64', 'Count DR235']):
+        plt.plot(df_unit['vth'], df_unit[count_col], label=label)
+    plt.xlabel('Vth')
+    plt.ylabel('Count')
+    plt.title(f'Unit {unit} - Count Comparison')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
 ```

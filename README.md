@@ -357,3 +357,47 @@ These are some of the most commonly used Excel functions, each with its code sam
 
 
 
+```
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# CSVデータの読み込み
+df = pd.read_csv('your_data.csv')
+
+# 前処理: 差分を計算して新しい列を作成
+df['cell_count0'] = df.groupby('unit')['count_dr0'].diff().fillna(0)
+df['cell_count64'] = df.groupby('unit')['count_dr64'].diff().fillna(0)
+df['cell_count235'] = df.groupby('unit')['count_dr235'].diff().fillna(0)
+
+# データの確認
+print(df.head())
+
+# unitごとのグラフを作成
+for unit in df['unit'].unique():
+    df_unit = df[df['unit'] == unit]
+    
+    # cell_countの比較グラフ
+    plt.figure(figsize=(10, 6))
+    plt.plot(df_unit['vth'], df_unit['cell_count0'], label='Cell Count DR0')
+    plt.plot(df_unit['vth'], df_unit['cell_count64'], label='Cell Count DR64')
+    plt.plot(df_unit['vth'], df_unit['cell_count235'], label='Cell Count DR235')
+    plt.xlabel('Vth')
+    plt.ylabel('Cell Count')
+    plt.title(f'Unit {unit} - Cell Count Comparison')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
+    # count_drの比較グラフ
+    plt.figure(figsize=(10, 6))
+    plt.plot(df_unit['vth'], df_unit['count_dr0'], label='Count DR0')
+    plt.plot(df_unit['vth'], df_unit['count_dr64'], label='Count DR64')
+    plt.plot(df_unit['vth'], df_unit['count_dr235'], label='Count DR235')
+    plt.xlabel('Vth')
+    plt.ylabel('Count')
+    plt.title(f'Unit {unit} - Count Comparison')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+```

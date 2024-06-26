@@ -41,3 +41,34 @@ For more detailed information and ongoing discussions about these issues, you ca
 - [GitLab Handbook on Mermaid Layouts](https://handbook.gitlab.com/) for advanced layout options and tips.
 
 Using these resources, you can better understand and work around the limitations in GitLab's current implementation of Mermaid diagrams.
+
+graph LR
+    classDef nodeStyle fill:#e0e0e0,stroke:#808080,stroke-width:2px;
+
+    subgraph AWS["AWS"]
+        direction LR
+        S3["Amazon S3"]:::nodeStyle
+        bucket["Bucket"]:::nodeStyle
+        Lambda["Lambda"]:::nodeStyle
+        EventBridge["Event Bridge"]:::nodeStyle
+        S3 --o bucket
+        Lambda --o bucket
+        EventBridge --o Lambda
+    end
+
+    subgraph GCP["GCP"]
+        direction LR
+        gsutil["gsutil"]:::nodeStyle
+        BigQuery["BigQuery"]:::nodeStyle
+        gsutil --o BigQuery
+    end
+
+    AWS --> GCP
+
+    %% Customizing arrow color to white to mimic transparency
+    linkStyle 0 stroke:#ffffff;
+    linkStyle 1 stroke:#ffffff;
+    linkStyle 2 stroke:#ffffff;
+    linkStyle 3 stroke:#ffffff;
+    linkStyle 4 stroke:#ffffff;
+

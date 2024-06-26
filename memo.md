@@ -72,3 +72,34 @@ graph LR
     linkStyle 3 stroke:#ffffff;
     linkStyle 4 stroke:#ffffff;
 
+graph LR
+    classDef nodeStyle fill:#e0e0e0,stroke:#808080,stroke-width:2px;
+
+    subgraph AWS["AWS"]
+        direction LR
+        S3["Amazon S3"]:::nodeStyle
+        bucket["Bucket"]:::nodeStyle
+        Lambda["Lambda"]:::nodeStyle
+        EventBridge["Event Bridge"]:::nodeStyle
+        S3 --> bucket
+        Lambda --> bucket
+        EventBridge --> Lambda
+    end
+
+    subgraph GCP["GCP"]
+        direction LR
+        gsutil["gsutil"]:::nodeStyle
+        BigQuery["BigQuery"]:::nodeStyle
+        gsutil --> BigQuery
+    end
+
+    AWS --> GCP
+
+    %% Customizing arrow color to white to mimic transparency
+    linkStyle 0 stroke:#ffffff,stroke-width:0px;
+    linkStyle 1 stroke:#ffffff,stroke-width:0px;
+    linkStyle 2 stroke:#ffffff,stroke-width:0px;
+    linkStyle 3 stroke:#ffffff,stroke-width:0px;
+    linkStyle 4 stroke:#ffffff,stroke-width:0px;
+    linkStyle 5 stroke:#ffffff,stroke-width:0px;
+

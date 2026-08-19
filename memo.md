@@ -1,5 +1,5 @@
 When using Mermaid diagrams in GitLab, there are a few things to keep in mind regarding layout and styling:
----
+```
 Option Explicit
 
 Sub ExportRegistrationCSV()
@@ -215,6 +215,7 @@ Sub ExportRegistrationCSV()
         "CSV出力完了"
 
 End Sub
+```
 ---
 1. **Graph Direction Issue**: Despite using `graph LR` to set the direction from left to right, GitLab may not always render the layout as expected. This issue has been noted and discussed within the community, indicating some limitations or bugs in GitLab's rendering of Mermaid diagrams [oai_citation:1,Align flowchart items in LR layout · Issue #3148 · mermaid-js/mermaid · GitHub](https://github.com/mermaid-js/mermaid/issues/3148) [oai_citation:2,Standard mermaid syntax for flowchart links not rendered in GitLab (#273774) · Issues · GitLab.org / GitLab · GitLab](https://gitlab.com/gitlab-org/gitlab/-/issues/273774).
 
